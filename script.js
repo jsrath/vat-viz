@@ -4,6 +4,7 @@ let countryRates;
 const ratesObj = {};
 
 async function getVatData() {
+  document.querySelector('.loading').classList.add('displayed');
   await fetch('./rates.json')
     .then(response => response.json())
     .then(data => (vatData = data.rates));
@@ -69,6 +70,7 @@ function getMap() {
   });
 
   d3.select(self.frameElement).style('height', height + 'px');
+  document.querySelector('.loading').classList.remove('displayed');
 }
 
 getVatData();
