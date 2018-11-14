@@ -33,9 +33,9 @@ function getMap() {
   const projection = d3
     .geoConicConformal()
     .rotate([-10, 0])
-    .center([0, 53])
+    .center([0, 51])
     .parallels([29.5, 45.5])
-    .scale(1200)
+    .scale(1255)
     .translate([width / 2, height / 2]);
 
   const path = d3.geoPath(projection);
@@ -46,10 +46,10 @@ function getMap() {
     .attr('width', width)
     .attr('height', height);
 
-  d3.json('./europe.json').then(europe => {
+  d3.json('./europe.topojson').then(europe => {
     svg
       .selectAll('.countries')
-      .data(topojson.feature(europe, europe.objects.countries).features)
+      .data(topojson.feature(europe, europe.objects.europe).features)
       .enter()
       .append('path')
       .attr('class', 'countries')
