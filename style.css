@@ -1,0 +1,48 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  background-color: #fff;
+  text-align: center;
+  color: #333;
+  display: inline-block;
+  padding: 10px 20px;
+  border: 2px solid #bbb;
+  margin: 50px 0 -200px;
+  z-index: 1;
+}
+
+.europeMap {
+  margin: 130px 0;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.europeMap svg {
+  border: 2px solid #e5e5e5;
+}
+
+.tooltip {
+  position: absolute;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #4B5775;
+  padding: 5px 20px;
+  pointer-events: none;
+  display: none;
+}
+
+.tooltip p {
+  margin: 0;
+  padding: 2px 0;
+}
