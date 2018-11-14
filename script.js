@@ -4,7 +4,7 @@ let countryRates;
 const ratesObj = {};
 
 async function getVatData() {
-  await fetch('https://jsonvat.com/')
+  await fetch('./rates.json')
     .then(response => response.json())
     .then(data => (vatData = data.rates));
 
