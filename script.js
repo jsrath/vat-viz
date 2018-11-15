@@ -1,26 +1,23 @@
-let vatData;
-let countryNames;
-let countryRates;
 const ratesObj = {};
 
 async function getVatData() {
   document.querySelector('.loading').classList.add('displayed');
   await fetch('./rates.json')
     .then(response => response.json())
-    .then(data => (vatData = data.rates));
-
-  vatData.map(country => {
-    ratesObj[country.name] = country.periods[0].rates.standard;
-  });
-  countryNames = vatData.map(country => country.name);
-  countryRates = vatData.map(country => country.periods[0].rates.standard);
+    .then(data =>
+      data.rates.map(country => {
+        ratesObj[country.name] = country.periods[0].rates.standard;
+      }),
+    );
   getMap();
 }
 
-const width = 960;
-const height = width / 1.37;
-
 function getMap() {
+  const width = 960;
+  const height = width / 1.37;
+  const vatValues = Object.values(ratesObj);
+  const vatCountries = Object.keys(ratesObj);
+
   const tooltip = d3
     .select('body')
     .append('div')
@@ -28,7 +25,7 @@ function getMap() {
 
   const color = d3
     .scaleLinear()
-    .domain([d3.min(countryRates), d3.mean(countryRates), d3.max(countryRates)])
+    .domain([d3.min(vatValues), d3.mean(vatValues), d3.max(vatValues)])
     .range(['green', 'yellow', 'red']);
 
   const projection = d3
@@ -54,12 +51,12 @@ function getMap() {
       .enter()
       .append('path')
       .attr('class', 'countries')
-      .style('fill', d => (countryNames.includes(d.properties.name) ? color(ratesObj[d.properties.name]) : '#E5E5E5'))
+      .style('fill', d => (vatCountries.includes(d.properties.name) ? color(ratesObj[d.properties.name]) : '#E5E5E5'))
       .style('stroke', '#9a9a9a')
       .style('stroke-width', '0.3px')
       .attr('d', path)
       .on('mouseover', d => {
-        countryNames.includes(d.properties.name) &&
+        vatCountries.includes(d.properties.name) &&
           tooltip.style('display', 'block').html(
             `<p><strong>${d.properties.name}</strong></p>
       <p>${ratesObj[d.properties.name]}%</p>`,
