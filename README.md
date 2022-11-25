@@ -12,7 +12,7 @@
 <hr>
 <h1 align="center">VAT Viz</h1>
 <h4 align="center">See VAT rates for all countries in the EU on an interactive map.</h4>
-<h3 align="center"><a href="http://projects.jsrath.com/population-trends">LIVE SITE</a></h3>
+<h3 align="center"><a href="https://projects.jsrath.com/vat-viz">LIVE SITE</a></h3>
 
 Built with D3.js and vanilla JavaScript, VAT Viz programmatically loads geographic data and VAT rates for each EU country. No images are used.  
 
